@@ -35,10 +35,12 @@ public class FirebaseCloudMessageService {
 //    private final ObjectMapper objectMapper;
 
 
-    public void sendMessageTo(String targetToken,String sender,String receiver, String contents,String img,
+    public void sendMessageTo(String targetToken,String sender,int senderKey,String receiver,
+                              int receiverKey, String contents,String img,
                                 String emotion, Timestamp atTime) throws IOException, FirebaseMessagingException {
 
-        String message = makeMessage(targetToken, sender,receiver,contents,img,emotion,atTime);
+        String message = makeMessage(targetToken, sender,senderKey,receiver,
+                                            receiverKey,contents,img,emotion,atTime);
 
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(message,MediaType.get("application/json; charset=utf-8"));
@@ -55,11 +57,14 @@ public class FirebaseCloudMessageService {
         System.out.println(response.body().string());
     }
 
-    private String makeMessage(String targetToken,String sender,String receiver, String contents,String img,
+    private String makeMessage(String targetToken,String sender,int senderKey,
+                               String receiver,int receiverKey, String contents,String img,
                                String emotion, Timestamp atTime) throws JsonProcessingException{
 
         HashMap map = new HashMap();
 
+        map.put("senderKey",Integer.toString(senderKey));
+        map.put("receiverKey",Integer.toString(receiverKey));
         map.put("sender",sender);
         map.put("receiver",receiver);
         map.put("contents",contents);

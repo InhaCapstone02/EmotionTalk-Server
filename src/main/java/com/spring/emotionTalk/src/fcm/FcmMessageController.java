@@ -73,7 +73,9 @@ public class FcmMessageController {
         firebaseCloudMessageService.sendMessageTo(
                 myDeviceToken,
                 fcmProvider.getUserNameByUserKey(userKey),
+                userKey,
                 fcmProvider.getUserNameByUserKey(anotherKey),
+                anotherKey,
                 "이미지 전송",
                 img,
                 "",
@@ -82,7 +84,9 @@ public class FcmMessageController {
         firebaseCloudMessageService.sendMessageTo(
                 anotherDeviceToken,
                 fcmProvider.getUserNameByUserKey(userKey),
+                userKey,
                 fcmProvider.getUserNameByUserKey(anotherKey),
+                anotherKey,
                 "이미지 전송",
                 img,
                 "",
@@ -114,7 +118,9 @@ public class FcmMessageController {
         firebaseCloudMessageService.sendMessageTo(
                 anotherDeviceToken,
                 fcmProvider.getUserNameByUserKey(userKeyByJwt),
+                userKeyByJwt,
                 fcmProvider.getUserNameByUserKey(postChatReq.getAnotherKey()),
+                postChatReq.getAnotherKey(),
                 postChatReq.getContents(),
                 "",
                 postChatReq.getEmotion(),
@@ -123,7 +129,9 @@ public class FcmMessageController {
         firebaseCloudMessageService.sendMessageTo(
                 myDeviceToken,
                 fcmProvider.getUserNameByUserKey(userKeyByJwt),
+                userKeyByJwt,
                 fcmProvider.getUserNameByUserKey(postChatReq.getAnotherKey()),
+                postChatReq.getAnotherKey(),
                 postChatReq.getContents(),
                 "",
                 postChatReq.getEmotion(),
